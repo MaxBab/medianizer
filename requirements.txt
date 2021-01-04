@@ -1,0 +1,2 @@
+# Installs required packages from the setup.py file
+-e .
