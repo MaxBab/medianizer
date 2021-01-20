@@ -1,20 +1,24 @@
 # Medianizer
 
-Medianizer is a tool to organize the media files by date structure.  
-During the sort operation, media files will be placed in a date (year/month)
-created directories structure.  
-The media files will be renamed in a creation date format (YYYY_MM_DD-HH:MM:SS.jpg).
+A command line based tool to organize the photo files into a hierarchy structure.
 
-Medianizer works with '.jpg' and '.jpeg' files.  
-The creation date of the media file fetched from the photo EXIF metadata.    
-Sorted media files placed within the `medianizer_sorted` directory,
-structured by the date format.  
-The files that the EXIF metadata could not be read from the file,
-placed with in the `medianizer_manual_sort` directory.  
-The files with identical metadata, beside the first one, will be marked as
-`duplicate_of_<name>` and placed under the `medianizer_manual_sort` as well.  
-The output of the `medianizer`, printed to the stdout and '/tmp/medianizer.log` file.
+### Features
+* Organize the photo files into the folder hierarchy structure
+* Create the structure of the folders by the following format - year/month
+* Support `.jpg` and `.jpeg` files
+* Fetch the creation date of the photo from the file EXIF metadata (using
+the ExifRead tool)
+* Rename the files into the `YYYY_MM_DD-HH:MM:SS.jpg` date format during
+the move into the structure
+* All the sorted photos will be placed into a hierarchy folders structure
+undercloud `medianizer_sorted` directory
+* The photos with the identical creation metadata, beside the first one,
+marked as `duplicate_of_<name>` and placed under the `medianizer_manual_sort` directory
+* A "--from-name" flag gives the ability to try to fetch creation date from the name of the file
+* the output of the execution, printed to the stdout and '/tmp/medianizer.log' file
 
+
+#### Final structure
 The final structure of the `medianizer` sort may look like the following:
 ```
 photos
@@ -48,16 +52,21 @@ photos
             └── 2017_04_18-04:14:58.jpg
 ```
 
-## Installation
+
+### Installation
 Install the package by:
-```
+```bash
+$ python -m venv medianizer_venv && source medianizer_venv/bin/activate
 $ python setup.py install
 ```
 
-## Usage
+As a requirement, the 'ExifRead' pip package will be installed.
+
+
+### Usage
 The medianizer accepts custom path of the directory and works on the provided path.
 
-```
+```bash
 $ medianizer --path <path_to_media_files>
 ```
 
@@ -65,6 +74,6 @@ By default, medianizer fetch the EXIF metadata of the media file.
 But if needed, the "--from-name" flag will try to fetch the creation date from the
 media file name.
 
-```
+```bash
 $ medianizer --path <path_to_media_files> --from-name
 ```

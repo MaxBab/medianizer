@@ -5,7 +5,7 @@ with open('README.md', 'r') as rd:
 
 setup(
     name='medianizer',
-    version='0.0.1',
+    version='0.0.2',
     description='Medianizer - media files organizer',
     long_description=long_description,
     author='Maxim Babushkin',
